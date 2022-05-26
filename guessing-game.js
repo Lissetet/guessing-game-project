@@ -20,6 +20,7 @@ rl.question('Enter a guess: ', (answer) => {
         askGuess();
     } else if (!check && numAttempts ===0) {
         console.log('You lose!');
+        console.log(`The secret number was ${secretNumber}.`);
         rl.close();
     } else {
         rl.close();
