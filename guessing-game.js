@@ -22,8 +22,8 @@ rl.question('Enter a guess: ', (answer) => {
 }
 
 //initialize game
-let secretNumber = getRandomInt();
-askGuess();
+let secretNumber = randomInRange(0, 100);
+//askGuess();
 
 //function to check user guess
 const checkGuess = (num) => {
@@ -41,23 +41,12 @@ const checkGuess = (num) => {
 
 }
 
-function getRandomInt() {
-    return Math.floor(Math.random() * 100);
+function randomInRange(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
   }
 
-
-// randomInRange
-// Define a function called randomInRange that accepts a minimum and maximum number as arguments. The function should
-// return a random whole number between the provided minimum and maximum (inclusive). Be sure to test your function,
-// here is an example of how it might behave:
-
-// console.log(randomInRange(15, 20)); // 16
-// console.log(randomInRange(15, 20)); // 17
-// console.log(randomInRange(15, 20)); // 20
-// Once you have confirmed that your randomInRange function is returning numbers properly, edit your initialization of
-// secretNumber. Instead of setting it to a hard-coded value, use your function's return value to set it to a random
-// number between 0 and 100. Play a few games! Remember that you'll have to call askGuess() once in the global scope
-// to begin the game. Next up, we'll allow the user to choose the min and max for the game.
 
 // askRange
 // Delete or comment out your global call to askGuess for now. Define a function called askRange. This method should
