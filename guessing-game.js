@@ -14,8 +14,13 @@ function askGuess () {
 rl.question('Enter a guess: ', (answer) => {
     let check = checkGuess(Number(answer));
 
-    if (!check) {
+    numAttempts--;
+
+    if (!check && numAttempts > 0) {
         askGuess();
+    } else if (!check && numAttempts ===0) {
+        console.log('You lose!');
+        rl.close();
     } else {
         rl.close();
     }
@@ -25,6 +30,7 @@ rl.question('Enter a guess: ', (answer) => {
 
 //initialize secretNumber
 let secretNumber;
+let numAttempts = 5;
 
 
 //function to check user guess
@@ -75,17 +81,6 @@ function askRange() {
 askRange();
 
 
-
-// Bonus: Limiting the number of turns
-// With our main features complete, let's work on increasing the difficulty of the game by limiting the number of
-// guesses a user can make. If the player uses all of their attempts without guessing the correct number, they will
-// lose the game.
-
-// Limiting turns to 5
-// Start by limiting the player to 5 attempts. You can accomplish this by initializing a numAttempts variable in the
-// global scope. Refactor your askGuess method to decrement the number of remaining attempts whenever it is called.
-// If the numAttempts reaches 0 before the correct guess is made, end the game by printing 'You Lose'. We'll leave
-// the details of the implementation up to you.
 
 // Limiting turns dynamically
 // Make the limit dynamic by allowing the user to specify the number of attempts. We recommend creating an askLimit
