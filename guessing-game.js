@@ -12,9 +12,11 @@ const rl = readline.createInterface({
 // ask again if incorrect
 function askGuess () {
 rl.question('Enter a guess: ', (answer) => {
+    numAttempts--;
+
     let check = checkGuess(Number(answer));
 
-    numAttempts--;
+
 
     if (!check && numAttempts > 0) {
         askGuess();
@@ -37,14 +39,18 @@ let numAttempts = 5;
 //function to check user guess
 function checkGuess (num) {
 
-    if (num < secretNumber) {
+    if (num < secretNumber && numAttempts > 0) {
         console.log('Too low');
+        console.log(`You have ${numAttempts} guesses left.`);
         return false;
     } else if (num === secretNumber) {
         console.log('You win!');
         return true;
-    } else if (num > secretNumber) {
+    } else if (num > secretNumber && numAttempts > 0) {
         console.log('Too high');
+        console.log(`You have ${numAttempts} guesses left.`);
+        return false;
+    } else {
         return false;
     }
 
@@ -69,7 +75,7 @@ function askRange() {
     rl.question('Enter a max number: ', (max) => {
         rl.question('Enter a min number: ', (min) => {
             console.log(`I'm thinking of a number between ${min} and ${max}`);
-
+            console.log(`You have ${numAttempts} guesses left.`);
             secretNumber = randomInRange(Number(min), Number(max));
             askGuess();
 
@@ -78,13 +84,16 @@ function askRange() {
 
 }
 
+// ask user for number of guesses allowed
+function askLimit() {
+
+    rl.question('Enter number of guesses allowed: ', (limit) => {
+
+        numAttempts = Number(limit);
+        askRange();
+
+    });
+}
+
 // initialize game
-askRange();
-
-
-
-// Limiting turns dynamically
-// Make the limit dynamic by allowing the user to specify the number of attempts. We recommend creating an askLimit
-// function that behaves similarly to askRange. Be sure to chain the callbacks in the right order to ensure the game
-// is configured properly. For example, one valid callback chain order would be askLimit -> askRange -> askGuess.
-// If you follow this order, you'll need to call askLimit in the global scope to begin the game.
+askLimit();
