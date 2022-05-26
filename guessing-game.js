@@ -22,8 +22,8 @@ rl.question('Enter a guess: ', (answer) => {
 }
 
 //initialize game
-askGuess();
 let secretNumber = 35;
+askGuess();
 
 //function to check user guess
 const checkGuess = (num) => {
