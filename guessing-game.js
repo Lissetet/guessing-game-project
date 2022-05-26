@@ -73,3 +73,22 @@ function askRange() {
 
 // initialize game
 askRange();
+
+
+
+// Bonus: Limiting the number of turns
+// With our main features complete, let's work on increasing the difficulty of the game by limiting the number of
+// guesses a user can make. If the player uses all of their attempts without guessing the correct number, they will
+// lose the game.
+
+// Limiting turns to 5
+// Start by limiting the player to 5 attempts. You can accomplish this by initializing a numAttempts variable in the
+// global scope. Refactor your askGuess method to decrement the number of remaining attempts whenever it is called.
+// If the numAttempts reaches 0 before the correct guess is made, end the game by printing 'You Lose'. We'll leave
+// the details of the implementation up to you.
+
+// Limiting turns dynamically
+// Make the limit dynamic by allowing the user to specify the number of attempts. We recommend creating an askLimit
+// function that behaves similarly to askRange. Be sure to chain the callbacks in the right order to ensure the game
+// is configured properly. For example, one valid callback chain order would be askLimit -> askRange -> askGuess.
+// If you follow this order, you'll need to call askLimit in the global scope to begin the game.
