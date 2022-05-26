@@ -7,7 +7,9 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// ask for guess
+// ask for guess and check against secretNumber
+// end game if guess correct
+// ask again if incorrect
 function askGuess () {
 rl.question('Enter a guess: ', (answer) => {
     let check = checkGuess(Number(answer));
@@ -21,9 +23,9 @@ rl.question('Enter a guess: ', (answer) => {
   });
 }
 
-//initialize game
+//initialize secretNumber
 let secretNumber;
-//askGuess();
+
 
 //function to check user guess
 function checkGuess (num) {
@@ -41,16 +43,17 @@ function checkGuess (num) {
 
 }
 
+// generate random integer between min and max
 function randomInRange(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  // Enter a max number: *20*
-// Enter a min number: *11*
-// I'm thinking of a number between 11 and 20...
 
+// send user inputs for min and max to randomInRange
+// assign secretNumber
+// call askGuess to initialize game
 function askRange() {
 
     let min;
@@ -68,4 +71,5 @@ function askRange() {
 
 }
 
+// initialize game
 askRange();
