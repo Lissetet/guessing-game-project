@@ -12,10 +12,18 @@ const rl = readline.createInterface({
 // ask again if incorrect
 function askGuess () {
 rl.question('Enter a guess: ', (answer) => {
+    numAttempts--;
+
     let check = checkGuess(Number(answer));
 
-    if (!check) {
+
+
+    if (!check && numAttempts > 0) {
         askGuess();
+    } else if (!check && numAttempts ===0) {
+        console.log('You lose!');
+        console.log(`The secret number was ${secretNumber}.`);
+        rl.close();
     } else {
         rl.close();
     }
@@ -25,19 +33,24 @@ rl.question('Enter a guess: ', (answer) => {
 
 //initialize secretNumber
 let secretNumber;
+let numAttempts;
 
 
 //function to check user guess
 function checkGuess (num) {
 
-    if (num < secretNumber) {
+    if (num < secretNumber && numAttempts > 0) {
         console.log('Too low');
+        console.log(`You have ${numAttempts} guesses left.`);
         return false;
     } else if (num === secretNumber) {
         console.log('You win!');
         return true;
-    } else if (num > secretNumber) {
+    } else if (num > secretNumber && numAttempts > 0) {
         console.log('Too high');
+        console.log(`You have ${numAttempts} guesses left.`);
+        return false;
+    } else {
         return false;
     }
 
@@ -62,7 +75,7 @@ function askRange() {
     rl.question('Enter a max number: ', (max) => {
         rl.question('Enter a min number: ', (min) => {
             console.log(`I'm thinking of a number between ${min} and ${max}`);
-
+            console.log(`You have ${numAttempts} guesses left.`);
             secretNumber = randomInRange(Number(min), Number(max));
             askGuess();
 
@@ -71,5 +84,16 @@ function askRange() {
 
 }
 
+// ask user for number of guesses allowed
+function askLimit() {
+
+    rl.question('Enter number of guesses allowed: ', (limit) => {
+
+        numAttempts = Number(limit);
+        askRange();
+
+    });
+}
+
 // initialize game
-askRange();
+askLimit();
