@@ -1,3 +1,22 @@
+// import the readline module into our file
+const readline = require("readline");
+
+// create an interface where we can talk to the user
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// ask for guess
+const askGuess = () => {
+rl.question('Enter a guess: ', (answer) => {
+    checkGuess(Number(answer));
+    rl.close();
+  });
+}
+
+askGuess();
+
 let secretNumber = 35;
 
 const checkGuess = (num) => {
@@ -15,15 +34,8 @@ const checkGuess = (num) => {
 
 }
 
-// askGuess
-// Since we will be taking user input during gameplay, we'll need to do some standard setup for Node's readline module.
-// Reference the readline docs to create an interface for input and output that we will use. To stay organized, we
-// recommend that you import the module and create the interface at the tippy top of your file.
 
-// Define a function named askGuess. The method should use the readline module's question method to ask the user to
-// 'Enter a guess: '. If you need a refresher on how to use this method, check out the question docs. Once the user
-// enters their number, the checkGuess function should be called with their number as an argument and the interface
-// should be closed.
+// askGuess
 
 // When accepting user input, there is a very important nuance to take into account. When the user enters their guess
 // it will be interpreted as a string of numeric characters and not an actual number type! Depending on how you wrote
