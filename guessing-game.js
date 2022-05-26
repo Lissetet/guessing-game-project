@@ -22,7 +22,7 @@ rl.question('Enter a guess: ', (answer) => {
 }
 
 //initialize game
-let secretNumber = 35;
+let secretNumber = getRandomInt();
 askGuess();
 
 //function to check user guess
@@ -41,20 +41,10 @@ const checkGuess = (num) => {
 
 }
 
+function getRandomInt() {
+    return Math.floor(Math.random() * 100);
+  }
 
-// Now that we have the core gameplay down, we'll want to implement logic to allow the secretNumber to be chosen at
-// random. To do this, we'll utilize the Math#random method. Take a look at the docs. The method returns a decimal
-// number between 0 and 1 (excluding 1). For example:
-
-// console.log(Math.random()); // 0.5719957072947224
-// console.log(Math.random()); // 0.08590173924968769
-// console.log(Math.random()); // 0.0965770175443883
-// By itself, this method won't be too useful because our game should only use whole numbers. Luckily, the docs
-// provide some insight into how we can design a function that returns a random whole number that lies within a certain
-// range. Scroll through the docs and locate examples about "Getting a random integer between two values." You'll use
-// these examples to inspire your code. You may notice that the examples provided rely on other methods like Math.floor.
-// Research those methods so that you understand how the code works. Googling around and researching the docs is an
-// important aspect of being a developer, so take your time!
 
 // randomInRange
 // Define a function called randomInRange that accepts a minimum and maximum number as arguments. The function should
