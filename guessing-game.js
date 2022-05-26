@@ -33,7 +33,7 @@ rl.question('Enter a guess: ', (answer) => {
 
 //initialize secretNumber
 let secretNumber;
-let numAttempts = 5;
+let numAttempts;
 
 
 //function to check user guess
